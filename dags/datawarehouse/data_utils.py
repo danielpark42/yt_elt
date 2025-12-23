@@ -3,6 +3,8 @@ from airflow.providers.postgres.hooks.postgres import PostgresHook
 # This will allow retrieval of reports using Python dictionaries and not the default tuples.
 from psycopg2.extras import RealDictCursor
 
+table = "yt_api"
+
 def get_conn_cursor():
     hook = PostgresHook(postgres_conn_id="postgres_db_yt_elt", db="elt_db")
     conn = hook.get_conn()

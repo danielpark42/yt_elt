@@ -3,13 +3,14 @@ import logging
 logger = logging.getLogger(__name__)
 table = "yt_api"
 
-def insert_rows(cur,conn,schema,row):
-    
+
+def insert_rows(cur, conn, schema, row):
+
     try:
 
-        if schema == 'staging':
+        if schema == "staging":
 
-            video_id = 'video_id'
+            video_id = "video_id"
 
             cur.execute(
                 f"""
@@ -18,7 +19,7 @@ def insert_rows(cur,conn,schema,row):
                 """,
                 row,
             )
-        
+
         else:
 
             video_id = "Video_ID"
@@ -38,7 +39,8 @@ def insert_rows(cur,conn,schema,row):
     except Exception as e:
         logger.error(f"Error inserting row with Video_ID: {row[video_id]}")
         raise e
-    
+
+
 def update_rows(cur, conn, schema, row):
 
     try:
@@ -78,6 +80,7 @@ def update_rows(cur, conn, schema, row):
     except Exception as e:
         logger.error(f"Error updating row with Video_ID: {row[video_id]} - {e}")
         raise e
+
 
 def delete_rows(cur, conn, schema, ids_to_delete):
 
